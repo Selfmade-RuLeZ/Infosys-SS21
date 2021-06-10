@@ -1,25 +1,12 @@
-version: "3.8"
-
+version: "3"
 services:
   db:
-    build:
-      context: .
+    build: .
+    environment:
+      SA_PASSWORD: "MssqlPass123"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
     ports:
-      - 1433:1433
-    # environment:
-    #   - SERVER_PORT=8000
-    #   - CONNECTIONSTRING=mongodb://mongo:27017/notes
-    # volumes:
-    #   - ./:/app
-    # command: npm run debug
-
-  # mongo:
-  #   image: mongo:4.2.8
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #     - mongodb:/data/db
-  #     - mongodb_config:/data/configdb
-# volumes:
-# mongodb:
-# mongodb_config:
+      - "1433:1433"
+    container_name: db
+    hostname: db
