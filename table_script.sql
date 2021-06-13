@@ -3,7 +3,9 @@ CREATE TABLE [Position]
  [Position_ID]  int NOT NULL ,
  [Booking_Date] datetime NOT NULL ,
  [Value_Date]   datetime NOT NULL ,
+ [Booking_Text] varchar(50) NOT NULL ,
  [Usage]        varchar(50) NOT NULL ,
+ [Beneficiary] varchar(50) NOT NULL ,
  [Amount]       float NOT NULL ,
 
 
