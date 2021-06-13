@@ -63,7 +63,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_41] ON [Property]
 
 CREATE TABLE [Contract]
 (
- [Contract_ID]      int NOT NULL ,
+ [Contract_ID]      int identity(1,1) ,
  [Tenant_ID]        int NOT NULL ,
  [Additional_Costs] float NOT NULL ,
  [Rental_Fee]       float NOT NULL ,
@@ -92,7 +92,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_69] ON [Contract]
 
 CREATE TABLE [Flat]
 (
- [Flat_ID]     int NOT NULL ,
+ [Flat_ID]     int identity(1,1) ,
  [Address]     varchar(50) NOT NULL ,
  [Contract_ID] int NOT NULL ,
  [Tenant_ID]   int NOT NULL ,

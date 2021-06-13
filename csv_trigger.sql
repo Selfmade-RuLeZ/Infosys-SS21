@@ -1,4 +1,5 @@
-IF OBJECT_ID ('dbo.CSVImportTrigger') IS NOT NULL   DROP trigger dbo.CSVImportTrigger
+IF OBJECT_ID ('dbo.CSVImportTrigger') IS NOT NULL
+   DROP trigger dbo.CSVImportTrigger
 GO
 
 CREATE TRIGGER [dbo].[CSVImportTrigger] ON [dbo].[Position] AFTER INSERT
