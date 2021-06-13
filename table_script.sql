@@ -1,6 +1,11 @@
+drop database infosys;
+create database infosys;
+use infosys;
+
+
 CREATE TABLE [Position]
 (
- [Position_ID]  int NOT NULL ,
+ [Position_ID]  int identity(1,1),
  [Booking_Date] datetime NOT NULL ,
  [Value_Date]   datetime NOT NULL ,
  [Booking_Text] varchar(50) NOT NULL ,
@@ -14,7 +19,7 @@ CREATE TABLE [Position]
 
 CREATE TABLE [Owner]
 (
- [Owner_ID]     int NOT NULL ,
+ [Owner_ID]     int identity(1,1),
  [First_Name]   varchar(50) NOT NULL ,
  [Last_Name]    varchar(50) NOT NULL ,
  [Phone_Number] int NOT NULL ,
@@ -27,7 +32,7 @@ CREATE TABLE [Owner]
 
 CREATE TABLE [Tenant]
 (
- [Tenant_ID]  int NOT NULL ,
+ [Tenant_ID]  int identity(1,1),
  [First_Name] varchar(50) NULL ,
  [Last_Name]  varchar(50) NULL ,
  [IBAN]       char(22) NOT NULL ,
@@ -39,7 +44,7 @@ CREATE TABLE [Tenant]
 
 CREATE TABLE [Property]
 (
- [Property_ID] int NOT NULL ,
+ [Property_ID] int identity(1,1),
  [Owner_ID]    int NOT NULL ,
  [Postal_Code] int NOT NULL ,
  [Address]     varchar(50) NOT NULL ,
@@ -116,7 +121,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_53] ON [Flat]
 
 CREATE TABLE [Journal]
 (
- [Journal_ID]   int NOT NULL ,
+ [Journal_ID]   int identity(1,1),
  [Booking_Date] datetime NOT NULL ,
  [Value_Date]   datetime NOT NULL ,
  [Amount]       float NOT NULL ,
@@ -136,7 +141,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_106] ON [Journal]
 
 CREATE TABLE [Utility_Cost]
 (
- [Utility_Cost_ID] int NOT NULL ,
+ [Utility_Cost_ID] int identity(1,1),
  [Booking_Date]    datetime NOT NULL ,
  [Value_Date]      datetime NOT NULL ,
  [Amount]          float NOT NULL ,
@@ -145,3 +150,26 @@ CREATE TABLE [Utility_Cost]
  CONSTRAINT [PK_utility_cost] PRIMARY KEY CLUSTERED ([Utility_Cost_ID] ASC)
 );
 GO
+
+
+INSERT INTO position (Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount)
+VALUES ('02.01.2019', '02.01.2019','LASTSCHRIFT', 'ZWIEBEL ANZ. 4246638', 'ZWIEBEL ESSLINGEN',-60.84)
+
+INSERT INTO position (Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount)
+VALUES ('02.01.2019',  '02.01.2019', 'DAUERAUFTRAG',  'MIETE 300 ','EHELEUTE HAEFELE', 360.00)
+
+
+/* declare @amount float; */
+/* select @amount = parse(replace(replace('-3.333,90', '.', ''), ',', '.') as float); */
+/* Print 'amount: ' + cast(@amount as varchar); */
+
+/* declare @time datetime; */
+/* select @time = CONVERT(DATETIME,'02.01.2019') */
+/* select @time = '02.01.2019' */
+/* print @time */
+
+
+
+
+select * from position;
+ 
