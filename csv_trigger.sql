@@ -13,7 +13,6 @@ BEGIN
 	IF @begünstigter IN (select last_name from tenant)
 	BEGIN
 		SELECT @tenantID = tenant_id from tenant where last_name = @begünstigter;
-		Print @begünstigter
 		INSERT INTO [dbo].[Journal]
 			(
 				[Booking_Date]
@@ -28,7 +27,7 @@ BEGIN
 			@tenantID
 		FROM inserted
 	END
-	IF @begünstigter IN ('ENBW','STADT ESSLINGEN', 'HAUG GAS WASSER SCHUTT' )
+	IF @begünstigter IN ('ENBW','STADT ESSLINGEN', 'HAUG GAS WASSER SCHUTT')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
