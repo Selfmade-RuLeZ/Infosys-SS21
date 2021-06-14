@@ -27,18 +27,52 @@ BEGIN
 			@tenantID
 		FROM inserted
 	END
-	IF @begünstigter IN ('ENBW','STADT ESSLINGEN', 'HAUG GAS WASSER SCHUTT')
+	ELSE IF @begünstigter IN ('ENBW')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
 				[Booking_Date]
 				,[Value_Date]
 				,[Amount]
+				,[Usage]
 			)
 		SELECT
 			Booking_Date,
 			Value_Date,
-			Amount
+			Amount,
+			'Strom'
+		FROM inserted
+	END
+	ELSE IF @begünstigter IN ('HAUG GAS WASSER SCHUTT')
+	BEGIN
+		INSERT INTO [dbo].[Utility_Cost]
+			(
+				[Booking_Date]
+				,[Value_Date]
+				,[Amount]
+				,[Usage]
+			)
+		SELECT
+			Booking_Date,
+			Value_Date,
+			Amount,
+			'Handwerker'
+		FROM inserted
+	END
+	ELSE IF @begünstigter IN ('FA ESSLINGEN')
+	BEGIN
+		INSERT INTO [dbo].[Utility_Cost]
+			(
+				[Booking_Date]
+				,[Value_Date]
+				,[Amount]
+				,[Usage]
+			)
+		SELECT
+			Booking_Date,
+			Value_Date,
+			Amount,
+			'Grundsteuer'
 		FROM inserted
 	END
 END

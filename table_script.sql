@@ -1,3 +1,4 @@
+
 drop database infosys;
 create database infosys;
 use infosys;
@@ -94,6 +95,7 @@ CREATE TABLE [Flat]
 (
  [Flat_ID]     int identity(1,1) ,
  [Address]     varchar(50) NOT NULL ,
+ [Size] float NOT NULL,
  [Contract_ID] int NOT NULL ,
  [Tenant_ID]   int NOT NULL ,
  [Owner_ID]    int NOT NULL ,
@@ -145,6 +147,7 @@ CREATE TABLE [Utility_Cost]
  [Booking_Date]    datetime NOT NULL ,
  [Value_Date]      datetime NOT NULL ,
  [Amount]          float NOT NULL ,
+ [Usage] varchar(50) NOT NULL,
 
 
  CONSTRAINT [PK_utility_cost] PRIMARY KEY CLUSTERED ([Utility_Cost_ID] ASC)
@@ -167,9 +170,3 @@ VALUES ('02.01.2019',  '02.01.2019', 'DAUERAUFTRAG',  'MIETE 300 ','EHELEUTE HAE
 /* select @time = CONVERT(DATETIME,'02.01.2019') */
 /* select @time = '02.01.2019' */
 /* print @time */
-
-
-
-
-select * from position;
- 
