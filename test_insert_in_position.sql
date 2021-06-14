@@ -1,3 +1,2 @@
-insert into Position ( Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount)
-values ( '20190301' ,'20190301', 'UEBERWEISUNGSGUTSCHRIFT', 'MIETE MUELLER', 'MUELLER' ,100),
-( '20190301' ,'20190301', 'UEBERWEISUNGSGUTSCHRIFT', 'MIETE MUELLER', 'MAIER' ,200);
+insert into Journal( Booking_Date, Value_Date, Amount, Tenant_ID)
+values ( '20190301' ,'20190301', -1400 ,3);
