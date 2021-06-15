@@ -75,4 +75,20 @@ BEGIN
 			'Grundsteuer'
 		FROM inserted
 	END
+	ELSE IF @begünstigter IN ('EVF')
+	BEGIN
+		INSERT INTO [dbo].[Utility_Cost]
+			(
+				[Booking_Date]
+				,[Value_Date]
+				,[Amount]
+				,[Usage]
+			)
+		SELECT
+			Booking_Date,
+			Value_Date,
+			Amount,
+			'Heizkosten'
+		FROM inserted
+	END
 END

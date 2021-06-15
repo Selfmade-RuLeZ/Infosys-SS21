@@ -11,6 +11,11 @@
 --select Value_Date, j.Amount ,  t.First_Name, t.Last_Name from Journal as j join Tenant as t on t.Tenant_ID = j.Tenant_ID Where j.Tenant_ID = 3 Order by Value_Date;
 
 -- Für eine Property (1) gesamt Personenanzahl
-select SUM(persons) from Tenant as t join Contract as c on c.Tenant_ID = t.Tenant_ID where c.Property_ID = 1
+/*select gesamtbetrag/(select SUM(persons) from Tenant as t join Contract as c on c.Tenant_ID = t.Tenant_ID where c.Property_ID = 1),usage, jahr 
+from Berechnung_Gesamtposten
+group by usage, gesamtbetrag, jahr*/
 
+--select * from Nebenkosten_P_proPerson
+--select * from Nebenkosten_Q_proQm
 --select SUM(Amount), Usage from Utility_Cost group by Usage
+exec gesamtbNebenkosten 'Mueller', 2020
