@@ -6,13 +6,13 @@ CREATE TRIGGER [dbo].[CSVImportTrigger] ON [dbo].[Position] AFTER INSERT
 AS
 BEGIN
 	DECLARE @tenantID int;
-	DECLARE @begünstigter varchar(50);
+	DECLARE @beguenstigter varchar(50);
 
-	SELECT @begünstigter = Beneficiary from inserted;
+	SELECT @beguenstigter = Beneficiary from inserted;
 
-	IF @begünstigter IN (select last_name from tenant)
+	IF EXISTS (select last_name from tenant where @beguenstigter LIKE '%'+Last_Name+'%')
 	BEGIN
-		SELECT @tenantID = tenant_id from tenant where last_name = @begünstigter;
+		SELECT @tenantID = tenant_id from tenant where @beguenstigter LIKE '%'+Last_Name+'%';
 		INSERT INTO [dbo].[Journal]
 			(
 				[Booking_Date]
@@ -27,7 +27,7 @@ BEGIN
 			@tenantID
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('ENBW')
+	ELSE IF @beguenstigter IN ('ENBW')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -43,7 +43,7 @@ BEGIN
 			'Strom'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('HAUG GAS WASSER SCHUTT')
+	ELSE IF @beguenstigter IN ('HAUG GAS WASSER SCHUTT')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -59,7 +59,7 @@ BEGIN
 			'Handwerker'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('FA ESSLINGEN')
+	ELSE IF @beguenstigter IN ('FA ESSLINGEN')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -75,7 +75,7 @@ BEGIN
 			'Grundsteuer'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('EVF')
+	ELSE IF @beguenstigter IN ('EVF')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
