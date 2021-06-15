@@ -10,7 +10,7 @@ CREATE TABLE [Position]
  [Booking_Date] datetime NOT NULL ,
  [Value_Date]   datetime NOT NULL ,
  [Booking_Text] varchar(50) NOT NULL ,
- [Usage]        varchar(50) NOT NULL ,
+ [Usage]        varchar(255) NOT NULL ,
  [Beneficiary] varchar(50) NOT NULL ,
  [Amount]       float NOT NULL ,
 
@@ -154,13 +154,13 @@ CREATE TABLE [Utility_Cost]
 );
 GO
 
-
+/*
 INSERT INTO position (Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount)
 VALUES ('02.01.2019', '02.01.2019','LASTSCHRIFT', 'ZWIEBEL ANZ. 4246638', 'ZWIEBEL ESSLINGEN',-60.84)
 
 INSERT INTO position (Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount)
 VALUES ('02.01.2019',  '02.01.2019', 'DAUERAUFTRAG',  'MIETE 300 ','EHELEUTE HAEFELE', 360.00)
-
+*/
 
 /* declare @amount float; */
 /* select @amount = parse(replace(replace('-3.333,90', '.', ''), ',', '.') as float); */
