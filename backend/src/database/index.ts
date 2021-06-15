@@ -18,9 +18,7 @@ const sqlConfig = {
 
 export default {
   insertBooking: async (booking: Booking) => {
-    const date = new Date("DD.MM.YYYY");
     const pool = new sql.ConnectionPool(sqlConfig);
-    console.log(booking);
     booking.Buchungstag =
       booking.Buchungstag.slice(6) +
       "" +
