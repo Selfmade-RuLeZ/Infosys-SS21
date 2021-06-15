@@ -18,7 +18,10 @@ values ('Günter', 'Grund', 01578456987, 73894, 'Teststraße 14')
 insert into Property (Owner_ID, Postal_Code, Address)
 values (1, 75687 , 'Teststraße 39')
 
-insert into contract (Tenant_ID, Additional_Costs, Rental_Fee, Start_Date, End_Date, Property_ID)values (3, 2500, 350, '20200614', '20210614', 1)
+insert into contract (Tenant_ID, Additional_Costs, Rental_Fee, Start_Date, End_Date, Property_ID)
+values (3, 2500, 350, '20200614', '20210614', 1)
 
-insert into flat (Address, Contract_ID, Tenant_ID, Owner_ID)values ('Teststraße 39', 1, 3, 1)*/
+insert into flat (Address, Contract_ID, Tenant_ID, Owner_ID)
+values ('Teststraße 39', 1, 3, 1)*/
+
 ;
