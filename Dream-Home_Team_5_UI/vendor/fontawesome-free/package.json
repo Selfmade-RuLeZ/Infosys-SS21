@@ -2,7 +2,7 @@
   "_args": [
     [
       "@fortawesome/fontawesome-free@5.15.3",
-      "C:\\Users\\Hamud\\IdeaProjects\\Infosys-SS21\\Dream-Home_Team_5_UI"
+      "C:\\Users\\Marcel\\Desktop\\Hochschule_Esslingen\\Semester_6\\Info Systeme\\Projekt\\UI\\startbootstrap-sb-admin-2-gh-pages"
     ]
   ],
   "_from": "@fortawesome/fontawesome-free@5.15.3",
@@ -27,7 +27,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.3.tgz",
   "_spec": "5.15.3",
-  "_where": "C:\\Users\\Hamud\\IdeaProjects\\Infosys-SS21\\Dream-Home_Team_5_UI",
+  "_where": "C:\\Users\\Marcel\\Desktop\\Hochschule_Esslingen\\Semester_6\\Info Systeme\\Projekt\\UI\\startbootstrap-sb-admin-2-gh-pages",
   "author": {
     "name": "Dave Gandy",
     "email": "dave@fontawesome.com",
