@@ -1,0 +1,18 @@
+{
+    "data":[
+        {
+            "id": "1",
+            "name": "john",
+            "lastName": "peter",
+            "iban": "123456789",
+            "personen": "2"
+        },
+        {
+            "id": "2",
+            "name": "hans",
+            "lastName": "jürgen",
+            "iban": "7654332754",
+            "personen": "9"
+        }
+    ]
+}
