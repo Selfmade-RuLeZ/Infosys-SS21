@@ -157,12 +157,12 @@ GO
 
 -- Views anlegen
 CREATE VIEW Zahlungen_Mieter
- AS select SUM(j.Amount) As Sum, t.First_Name, t.Last_Name 
+ AS select t.Tenant_ID, SUM(j.Amount) As Offene_Posten, t.First_Name, t.Last_Name
  from Journal as j 
- join Tenant as t 
+ left join Tenant as t 
  on t.Tenant_ID = j.Tenant_ID 
  where j.Value_Date <= GETDATE()
- group by t.First_Name, t.Last_Name;
+ group by t.Tenant_ID, t.First_Name, t.Last_Name;
  go
  
 IF OBJECT_ID ('dbo.Nebenkosten_P_proPerson') IS NOT NULL
@@ -388,7 +388,6 @@ values
 ( 'Ingrid', 'Haug' , 'DE12312312312312312314', 4),
 ( 'Dietmar', 'Haefele' , 'DE12312312312312312315', 2),
 ( 'Petar', 'Koslowski' , 'DE12312312312312312316', 1),
-( 'Dietmar', 'Haefele' , 'DE12312312312312312317', 2),
 ( 'Luigi', 'Barni' , 'DE12312312312312312318', 1),
 ( 'Michael', 'Mann' , 'DE12312312312312312320', 5),
 ( 'Guenter', 'Gruner' , 'DE12312312312312312321', 2),
@@ -398,7 +397,7 @@ go
 
 
 insert into Owner (First_Name, Last_Name, Phone_Number, Postal_Code, Address)
-values ('Guenter', 'Grund', 01578456987, 73894, 'Teststra�e 14')
+values ('Guenter', 'Grund', 01578456987, 73894, 'Teststrasse 14')
 go
 
 insert into Property (Owner_ID, Postal_Code, Address)
