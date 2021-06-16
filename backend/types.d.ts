@@ -82,3 +82,48 @@ interface Position {
   Beneficiary: string;
   Amount: string;
 }
+
+interface PDFUser {
+  Gesamtbetrag: number;
+  First_Name: string;
+  Last_Name: string;
+  OffenerBetrag?: number;
+  ZahlenderBetrag?: number;
+}
+
+interface PDFUsage {
+  Betrag: number;
+  usage: string;
+}
+
+declare module "pdf-creator-node" {
+  export function create(
+    document: {
+      html: string;
+      data: {
+        users: PDFUser[];
+        usages: PDFUsage[];
+      };
+      path: string;
+      type: string;
+    },
+    options: {
+      format: string;
+      orientation: string;
+      border: string;
+      header: {
+        height: string;
+        contents: string;
+      };
+      footer: {
+        height: string;
+        contents: {
+          first: string;
+          2: string;
+          default: string;
+          last: string;
+        };
+      };
+    }
+  ): Promise;
+}

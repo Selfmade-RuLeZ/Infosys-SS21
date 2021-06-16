@@ -203,4 +203,43 @@ export default {
       });
     return positions;
   },
+  getUtilityCostForUser: async (username: string, year: number) => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const utilityCost = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request
+          .input("nachnameMieter", sql.VarChar, username)
+          .input("jahr", sql.Int, year)
+          .execute("gesamtbNebenkosten");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getUtilityCostForUser: ${error}`
+        );
+        throw error;
+      });
+    return utilityCost;
+  },
+  getPaidUtilityCostForUser: async (username: string) => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const positions = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query(
+          `select * from gezahlteNebenkostenJeMieter where Last_Name = '${username}'`
+        );
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getPaidUtilityCostForUser: ${error}`
+        );
+        throw error;
+      });
+    return positions;
+  },
 };
