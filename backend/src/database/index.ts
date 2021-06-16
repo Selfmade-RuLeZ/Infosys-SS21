@@ -83,4 +83,38 @@ export default {
       });
     pool.close();
   },
+  getContracts: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from contract");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getContract: ${error}`
+        );
+        throw error;
+      });
+    return tenants;
+  },
+  getFlats: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from flat");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getFlats: ${error}`
+        );
+        throw error;
+      });
+    return tenants;
+  },
 };

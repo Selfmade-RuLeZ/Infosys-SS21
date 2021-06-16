@@ -2,9 +2,14 @@ import express from "express";
 import uploadRoute from "./upload";
 import tenantRoute from "./tenant";
 import bkaRoute from "./betriebskostenabr";
-import database from "../database";
+import contractRoute from "./contract";
+import flatRoute from "./flat";
 
 const router = express.Router();
+
+router.use("/contract", contractRoute);
+
+router.use("/flats", flatRoute);
 
 router.use("/upload", uploadRoute);
 
