@@ -1,7 +1,9 @@
---drop database infosys;
---create database infosys;
---use infosys;
-
+drop database infosys;
+go
+create database infosys;
+go
+use infosys;
+go
 --Tabellen anlegen
 CREATE TABLE [Position]
 (
@@ -9,7 +11,7 @@ CREATE TABLE [Position]
  [Booking_Date] datetime NOT NULL ,
  [Value_Date]   datetime NOT NULL ,
  [Booking_Text] varchar(50) NOT NULL ,
- [Usage]        varchar(50) NOT NULL ,
+ [Usage]        varchar(255) NOT NULL ,
  [Beneficiary] varchar(50) NOT NULL ,
  [Amount]       float NOT NULL ,
 
@@ -153,7 +155,7 @@ CREATE TABLE [Utility_Cost]
 );
 GO
 
---DB mit Daten füllen
+--DB mit Daten fï¿½llen
 
 insert into Tenant ( First_Name, Last_Name, IBAN, Persons)
 values 
@@ -172,11 +174,11 @@ go
 
 
 insert into Owner (First_Name, Last_Name, Phone_Number, Postal_Code, Address)
-values ('Günter', 'Grund', 01578456987, 73894, 'Teststraße 14')
+values ('Guenter', 'Grund', 01578456987, 73894, 'Teststraï¿½e 14')
 go
 
 insert into Property (Owner_ID, Postal_Code, Address)
-values (1, 75687 , 'Teststraße 39')
+values (1, 75687 , 'Teststrasse 39')
 go
 
 insert into contract (Tenant_ID, Additional_Costs, Rental_Fee, Start_Date, End_Date, Property_ID)
@@ -196,17 +198,17 @@ go
 
 insert into flat (Address, Size, Contract_ID, Tenant_ID, Owner_ID)
 values 
-('Teststraße 39', 80, 1, 1, 1),
-('Teststraße 39', 72, 2, 2, 1),
-('Teststraße 39', 65, 3, 3, 1),
-('Teststraße 39', 68, 4, 4, 1),
-('Teststraße 39', 120, 5, 5, 1),
-('Teststraße 39', 89, 6, 6, 1),
-('Teststraße 39', 98, 7, 7, 1),
-('Teststraße 39', 69, 8, 8, 1),
-('Teststraße 39', 75, 9, 9, 1),
-('Teststraße 39', 71, 10, 10, 1),
-('Teststraße 39', 87, 11, 11, 1)
+('Teststrasse 39', 80, 1, 1, 1),
+('Teststrasse 39', 72, 2, 2, 1),
+('Teststrasse 39', 65, 3, 3, 1),
+('Teststrasse 39', 68, 4, 4, 1),
+('Teststrasse 39', 120, 5, 5, 1),
+('Teststrasse 39', 89, 6, 6, 1),
+('Teststrasse 39', 98, 7, 7, 1),
+('Teststrasse 39', 69, 8, 8, 1),
+('Teststrasse 39', 75, 9, 9, 1),
+('Teststrasse 39', 71, 10, 10, 1),
+('Teststrasse 39', 87, 11, 11, 1)
 go
 
 -- Views anlegen
@@ -268,13 +270,13 @@ CREATE TRIGGER [dbo].[CSVImportTrigger] ON [dbo].[Position] AFTER INSERT
 AS
 BEGIN
 	DECLARE @tenantID int;
-	DECLARE @begünstigter varchar(50);
+	DECLARE @beguenstigter varchar(50);
 
-	SELECT @begünstigter = Beneficiary from inserted;
+	SELECT @beguenstigter = Beneficiary from inserted;
 
-	IF @begünstigter IN (select last_name from tenant)
+	IF EXISTS (select last_name from tenant where @beguenstigter LIKE '%'+Last_Name+'%')
 	BEGIN
-		SELECT @tenantID = tenant_id from tenant where last_name = @begünstigter;
+		SELECT @tenantID = tenant_id from tenant where @beguenstigter LIKE '%'+Last_Name+'%';
 		INSERT INTO [dbo].[Journal]
 			(
 				[Booking_Date]
@@ -289,7 +291,7 @@ BEGIN
 			@tenantID
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('ENBW')
+	ELSE IF @beguenstigter IN ('ENBW')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -305,7 +307,7 @@ BEGIN
 			'Strom'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('HAUG GAS WASSER SCHUTT')
+	ELSE IF @beguenstigter IN ('HAUG GAS WASSER SCHUTT')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -321,7 +323,7 @@ BEGIN
 			'Handwerker'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('FA ESSLINGEN')
+	ELSE IF @beguenstigter IN ('FA ESSLINGEN')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -337,7 +339,7 @@ BEGIN
 			'Grundsteuer'
 		FROM inserted
 	END
-	ELSE IF @begünstigter IN ('EVF')
+	ELSE IF @beguenstigter IN ('EVF')
 	BEGIN
 		INSERT INTO [dbo].[Utility_Cost]
 			(
@@ -356,7 +358,7 @@ BEGIN
 END
 go
 
--- Stored Procedure für Nebenkosten
+-- Stored Procedure fuer Nebenkosten
 CREATE PROCEDURE dbo.gesamtbNebenkosten @nachnameMieter varchar(50), @jahr int
 AS
 BEGIN

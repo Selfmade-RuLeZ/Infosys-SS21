@@ -1,10 +1,10 @@
 import sql from "mssql";
 
 const sqlConfig = {
-  user: process.env.DB_USERd || "sa",
-  password: process.env.DB_PASSWORDd || "Password1!",
-  database: process.env.DB_NAMEd || "infosys",
-  server: process.env.DB_HOSTd || "localhost",
+  user: process.env.DB_USER || "sa",
+  password: process.env.DB_PASSWORD || "Password1!",
+  database: process.env.DB_NAME || "infosys",
+  server: process.env.DB_HOST || "localhost",
   port: 1433,
   pool: {
     max: 10,
@@ -47,4 +47,17 @@ export default {
       });
     pool.close();
   },
+  getTenants: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool.connect()
+    .then(async () => {
+      const request = new sql.Request(pool);
+      const result = await request.query('select * from tenant');
+      return result.recordset;
+    }).catch((error) => {
+      console.error(`There is an error occured in Function getTenants: ${error}`)
+      throw (error)
+    })
+    return tenants;
+  }
 };
