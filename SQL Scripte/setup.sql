@@ -171,7 +171,7 @@ GO
  CREATE VIEW Nebenkosten_P_proPerson
  AS select (SUM(Amount)/(select SUM(persons) from Tenant as t join Contract as c on c.Tenant_ID = t.Tenant_ID where c.Property_ID = 1)) As Gesamtbetrag, Usage, YEAR(Value_Date) AS Jahr 
  from Utility_Cost 
- where Usage IN ('Strom', 'Grundsteuer')
+ where Usage IN ('Strom', 'Grundsteuer', 'Wasser', 'Muell')
  group by Usage, YEAR(Value_Date)
  go
  
@@ -250,6 +250,38 @@ BEGIN
 			Value_Date,
 			Amount,
 			'Strom'
+		FROM inserted
+	END
+	ELSE IF @beguenstigter IN ('Wasserversorgung')
+	BEGIN
+		INSERT INTO [dbo].[Utility_Cost]
+			(
+				[Booking_Date]
+				,[Value_Date]
+				,[Amount]
+				,[Usage]
+			)
+		SELECT
+			Booking_Date,
+			Value_Date,
+			Amount,
+			'Wasser'
+		FROM inserted
+	END
+	ELSE IF @beguenstigter IN ('Muellabfuhr')
+	BEGIN
+		INSERT INTO [dbo].[Utility_Cost]
+			(
+				[Booking_Date]
+				,[Value_Date]
+				,[Amount]
+				,[Usage]
+			)
+		SELECT
+			Booking_Date,
+			Value_Date,
+			Amount,
+			'Muell'
 		FROM inserted
 	END
 	ELSE IF @beguenstigter IN ('HAUG GAS WASSER SCHUTT')
@@ -355,7 +387,7 @@ GO
  CREATE VIEW Nebenkosten_P_proPerson
  AS select (SUM(Amount)/(select SUM(persons) from Tenant as t join Contract as c on c.Tenant_ID = t.Tenant_ID where c.Property_ID = 1)) As Gesamtbetrag, Usage, YEAR(Value_Date) AS Jahr 
  from Utility_Cost 
- where Usage IN ('Strom', 'Grundsteuer')
+ where Usage IN ('Strom', 'Grundsteuer', 'Wasser', 'Muell')
  group by Usage, YEAR(Value_Date)
  go
 
