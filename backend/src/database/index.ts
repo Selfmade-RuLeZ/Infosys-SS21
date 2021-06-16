@@ -117,4 +117,21 @@ export default {
       });
     return tenants;
   },
+  getOwner: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from owner");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getOwner: ${error}`
+        );
+        throw error;
+      });
+    return tenants;
+  },
 };

@@ -40,3 +40,12 @@ interface Flat {
   Tenant_ID: number;
   Owner_ID: number;
 }
+
+interface Owner {
+  Owner_ID: number;
+  First_Name: string;
+  Last_Name: string;
+  Phone_Number: number;
+  Postal_Code: number;
+  Address: string;
+}
