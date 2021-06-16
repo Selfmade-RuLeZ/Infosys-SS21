@@ -7,6 +7,8 @@ import flatRoute from "./flat";
 import ownerRoute from "./owner";
 import propertyRoute from "./property";
 import utilityCostRoute from "./utilityCost";
+import journalRoute from "./journal";
+import positionRoute from "./position";
 
 const router = express.Router();
 
@@ -21,7 +23,12 @@ router.use("/tenants", tenantRoute);
 router.use("/owner", ownerRoute);
 
 router.use("/property", propertyRoute);
+
 router.use("/utilityCost", utilityCostRoute);
+
+router.use("/journal", journalRoute);
+
+router.use("/position", positionRoute);
 
 router.use("/betriebskostenabrechnung", bkaRoute);
 
