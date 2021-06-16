@@ -23,6 +23,15 @@ router.get("/", async (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {});
+router.post("/", async (req, res) => {
+  await database
+    .insertTenant(req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
 
 export default router;
