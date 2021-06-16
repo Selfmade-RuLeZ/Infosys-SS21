@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Tabelle erstellen und Daten laden
-    $("#dataTable").DataTable({
+    $("#contractTable").DataTable({
         ajax: "/api/contract",
         columns: [
             {
@@ -27,7 +27,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#flatTable").DataTable({
         ajax: "/api/flat",
         columns: [
             {
@@ -45,7 +45,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#ownerTable").DataTable({
         ajax: "/api/owner",
         columns: [
             {
@@ -69,7 +69,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#propertyTable").DataTable({
         ajax: "/api/property",
         columns: [
             {
@@ -87,7 +87,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#utilityCostTable").DataTable({
         ajax: "/api/utilityCost",
         columns: [
             {
@@ -105,7 +105,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#journalTable").DataTable({
         ajax: "/api/journal",
         columns: [
             {
@@ -126,7 +126,7 @@ $(document).ready(function () {
         ],
     });
 
-    $("#dataTable").DataTable({
+    $("#positionTable").DataTable({
         ajax: "/api/position",
         columns: [
             {
@@ -146,11 +146,5 @@ $(document).ready(function () {
             },
         ],
     });
-
-
-
-
-
-
 
 });
