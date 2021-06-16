@@ -93,7 +93,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -121,17 +121,16 @@
                                 </form>
                             </div>
                         </li>
-                     
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Dream Home</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
-                         
-                         
+
+
                         </li>
 
                     </ul>
@@ -145,8 +144,10 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Import CSV</a>
+                        <form id="upload-form">
+                            <input type="file" id="file-select-input" />
+                            <button id="upload-button">Upload</button>
+                        </form>
                     </div>
 
                     <!-- Content Row -->
@@ -190,12 +191,12 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            
+
                         </div>
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                           
+
                         </div>
                     </div>
 
@@ -236,7 +237,7 @@
 
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
-                            
+
                         </div>
                     </div>
 
@@ -245,66 +246,67 @@
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
-            </div>
-            <!-- End of Main Content -->
+                        </div>
+                        <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Dream Home 2021</span>
+                        <!-- Footer -->
+                        <footer class="sticky-footer bg-white">
+                            <div class="container my-auto">
+                                <div class="copyright text-center my-auto">
+                                    <span>Copyright &copy; Dream Home 2021</span>
+                                </div>
+                            </div>
+                        </footer>
+                        <!-- End of Footer -->
+
+                    </div>
+                    <!-- End of Content Wrapper -->
+
+                </div>
+                <!-- End of Page Wrapper -->
+
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" href="login.html">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    </div>
-    <!-- End of Page Wrapper -->
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                <!-- Page level plugins -->
+                <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+                <!-- Page level custom scripts -->
+                <script src="js/demo/chart-area-demo.js"></script>
+                <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
