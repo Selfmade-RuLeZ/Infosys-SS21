@@ -41,8 +41,7 @@ router.post("/bookings", async (req, res) => {
           await database.insertBooking(booking);
         });
       });
-
-    res.send(200);
+    res.redirect("/");
   } else {
     res.send(500);
   }

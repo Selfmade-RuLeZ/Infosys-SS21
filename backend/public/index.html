@@ -144,9 +144,9 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <form id="upload-form">
-                            <input type="file" id="file-select-input" />
-                            <button id="upload-button">Upload</button>
+                        <form id="upload-form" action="/api/upload/bookings" method="POST" enctype="multipart/form-data">
+                            <input type="file" id="file-select-input" name="bookings"/>
+                            <button type="submit">Upload</button>
                         </form>
                     </div>
 
