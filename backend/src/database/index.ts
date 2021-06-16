@@ -242,4 +242,21 @@ export default {
       });
     return positions;
   },
+  getOpenRentals: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const positions = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query(`select * from Zahlungen_Mieter`);
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getOpenRentals: ${error}`
+        );
+        throw error;
+      });
+    return positions;
+  },
 };

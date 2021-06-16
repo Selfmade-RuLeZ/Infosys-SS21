@@ -96,6 +96,13 @@ interface PDFUsage {
   usage: string;
 }
 
+interface OpenRental {
+  Tenant_ID: number;
+  Offene_Posten: number;
+  First_Name: string;
+  Last_Name: string;
+}
+
 declare module "pdf-creator-node" {
   export function create(
     document: {
