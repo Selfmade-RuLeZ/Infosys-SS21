@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000;
 
 app.use("/api", apiRouter);
 
+app.use(express.static("public"));
+
 app.listen(port, () => {
   console.log(`Infosys is listening on http://localhost:${port}`);
 });
