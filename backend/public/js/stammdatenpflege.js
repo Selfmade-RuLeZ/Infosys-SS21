@@ -72,13 +72,13 @@ $(document).ready(function() {
             data: sendData,
             success: function(result) {
                 selectedRow = table
-                .row.add({
-                    "id": result.id,
-                    "name": result.name,
-                    "lastName": result.lastName,
-                    "iban": result.iban,
-                    "personen": result.personen
-                });
+                    .row.add({
+                        "id": result.id,
+                        "name": result.name,
+                        "lastName": result.lastName,
+                        "iban": result.iban,
+                        "personen": result.personen
+                    });
                 selectedRow.draw();
 
                 $("#SDPID").val(result.id);
@@ -121,5 +121,3 @@ $(document).ready(function() {
         });
     });
 });
-
-
