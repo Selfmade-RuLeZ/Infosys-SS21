@@ -85,7 +85,7 @@ export default {
   },
   getContracts: async () => {
     const pool = new sql.ConnectionPool(sqlConfig);
-    const tenants = await pool
+    const contracts = await pool
       .connect()
       .then(async () => {
         const request = new sql.Request(pool);
@@ -98,11 +98,11 @@ export default {
         );
         throw error;
       });
-    return tenants;
+    return contracts;
   },
   getFlats: async () => {
     const pool = new sql.ConnectionPool(sqlConfig);
-    const tenants = await pool
+    const flats = await pool
       .connect()
       .then(async () => {
         const request = new sql.Request(pool);
@@ -115,11 +115,11 @@ export default {
         );
         throw error;
       });
-    return tenants;
+    return flats;
   },
   getOwner: async () => {
     const pool = new sql.ConnectionPool(sqlConfig);
-    const tenants = await pool
+    const owner = await pool
       .connect()
       .then(async () => {
         const request = new sql.Request(pool);
@@ -132,6 +132,75 @@ export default {
         );
         throw error;
       });
-    return tenants;
+    return owner;
+  },
+  getProperty: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const property = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from property");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getProperty: ${error}`
+        );
+        throw error;
+      });
+    return property;
+  },
+  getUtilityCost: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const utilityCost = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from utility_cost");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getUtilityCost: ${error}`
+        );
+        throw error;
+      });
+    return utilityCost;
+  },
+  getJournal: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const journal = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from journal");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getJorunal: ${error}`
+        );
+        throw error;
+      });
+    return journal;
+  },
+
+  getPositions: async () => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const positions = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from position");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getPositions: ${error}`
+        );
+        throw error;
+      });
+    return positions;
   },
 };

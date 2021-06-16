@@ -5,6 +5,7 @@ import bkaRoute from "./betriebskostenabr";
 import contractRoute from "./contract";
 import flatRoute from "./flat";
 import ownerRoute from "./owner";
+import propertyRoute from "./property";
 
 const router = express.Router();
 
@@ -17,6 +18,8 @@ router.use("/upload", uploadRoute);
 router.use("/tenants", tenantRoute);
 
 router.use("/owner", ownerRoute);
+
+router.use("/property", propertyRoute);
 
 router.use("/betriebskostenabrechnung", bkaRoute);
 

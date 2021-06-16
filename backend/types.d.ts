@@ -49,3 +49,10 @@ interface Owner {
   Postal_Code: number;
   Address: string;
 }
+
+interface Property {
+  Property_ID: number;
+  Owner_ID: number;
+  Postal_Code: number;
+  Address: string;
+}
