@@ -75,9 +75,11 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: "/api/tenant",
+      url: "/api/tenants",
       type: "POST",
-      data: sendData,
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(sendData),
       success: function (result) {
         selectedRow = table.row.add({
           id: result.id,
@@ -112,7 +114,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: `/API.PFAD/${selectedRow.id}`,
+      url: `/api/tenants`,
       type: "DELETE",
       success: function () {
         $("#SDPID").val("");

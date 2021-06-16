@@ -49,15 +49,38 @@ export default {
   },
   getTenants: async () => {
     const pool = new sql.ConnectionPool(sqlConfig);
-    const tenants = await pool.connect()
-    .then(async () => {
-      const request = new sql.Request(pool);
-      const result = await request.query('select * from tenant');
-      return result.recordset;
-    }).catch((error) => {
-      console.error(`There is an error occured in Function getTenants: ${error}`)
-      throw (error)
-    })
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query("select * from tenant");
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getTenants: ${error}`
+        );
+        throw error;
+      });
     return tenants;
-  }
+  },
+
+  insertTenant: async (tenant: JSONTenant) => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        await request.query(
+          `insert into Tenant( First_Name, Last_Name, IBAN, Persons) values ( '${tenant.name}', '${tenant.lastName}', '${tenant.iban}',${tenant.personen});`
+        );
+      })
+      .catch((error) => {
+        console.error(
+          `This query failed with this error: ${error}\nNext log shows the booking object`
+        );
+        console.error(tenant);
+      });
+    pool.close();
+  },
 };

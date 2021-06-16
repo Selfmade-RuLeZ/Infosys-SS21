@@ -14,3 +14,10 @@ interface Tenant {
   IBAN: string;
   Persons: number;
 }
+
+interface JSONTenant {
+  name: string;
+  lastName: string;
+  iban: string;
+  personen: number;
+}
