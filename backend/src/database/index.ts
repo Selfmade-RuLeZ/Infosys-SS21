@@ -65,6 +65,31 @@ export default {
     return tenants;
   },
 
+  getTenantAddress: async (lastName: string) => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenant = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query(
+          `select p.Address as Address, p.Postal_Code as Postal_Code 
+          from property p 
+          join contract c on p.Property_ID=c.Property_ID 
+          join Tenant t on c.Tenant_ID=t.Tenant_ID 
+          where t.Last_Name='${lastName}'`
+        );
+        if (result.recordset.length > 0) return result.recordset[0];
+        else throw "User not found";
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getTenants: ${error}`
+        );
+        throw error;
+      });
+    return tenant;
+  },
+
   insertTenant: async (tenant: JSONTenant) => {
     const pool = new sql.ConnectionPool(sqlConfig);
     await pool

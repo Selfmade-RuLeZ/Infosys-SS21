@@ -89,6 +89,8 @@ interface PDFUser {
   Last_Name: string;
   OffenerBetrag?: number;
   ZahlenderBetrag?: number;
+  Address?: string;
+  PostalCode?: number;
 }
 
 interface PDFUsage {
@@ -101,6 +103,10 @@ interface OpenRental {
   Offene_Posten: number;
   First_Name: string;
   Last_Name: string;
+}
+interface Address {
+  Address: string;
+  Postal_Code: number;
 }
 
 declare module "pdf-creator-node" {

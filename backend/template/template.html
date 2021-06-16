@@ -2,6 +2,12 @@
 <html>
   <head>
     <title>Betriebskostenabrechnung</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
   <style>
     table,
@@ -10,57 +16,90 @@
       border: 1px solid black;
       border-collapse: collapse;
     }
+    .table-print {
+      width: 100%;
+      margin-bottom: 1rem;
+      color: #212529;
+    }
+
+    .table-print thead th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #dee2e6;
+    }
+
+    .table-print th,
+    .table-print td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border-top: 1px solid #dee2e6;
+    }
+    .table-print .thead-dark th {
+      color: #fff;
+      background-color: #343a40;
+      border-color: #454d55;
+    }
   </style>
   <body>
-    {{#each users}}
-    <h1>Ihre Betriebskostenabrechnung {{this.name}}</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Vorname</th>
-          <th>Name</th>
-          <th>Gesamt zu zahlender Betrag</th>
-          <th>Gezahlter Betrag</th>
-          <th>Differenz</th>
-        </tr>
+    <div class="container">
+      {{#each users}}
+      <div class="container fluid mb-5 ml-3">
+        <div class="row">{{this.First_Name}} {{this.Last_Name}}</div>
+        <div class="row">{{this.Address}}</div>
+        <div class="row">{{this.PostalCode}}</div>
+      </div>
+      <h2>Ihre Betriebskostenabrechnung</h2>
+      <table class="table-print">
+        <thead class="thead-dark">
+          <tr>
+            <th>Vorname</th>
+            <th>Name</th>
+            <th>Gesamt zu zahlender Betrag</th>
+            <th>Gezahlter Betrag</th>
+            <th>Differenz</th>
+          </tr>
 
-        <tr>
-          <td>{{this.First_Name}}</td>
-          <td>{{this.Last_Name}}</td>
-          <td>{{this.ZahlenderBetrag}}</td>
-          <td>{{this.Gesamtbetrag}}</td>
-          <td>{{this.OffenerBetrag}}</td>
-        </tr>
-      </thead>
-      <tbody></tbody>
-      <tfoot></tfoot>
-    </table>
-    {{/each}}
-    <br />
-    <br />
-    <table>
-      <thead>
-        <tr>
-          <th>Usage</th>
-          <th>Betrag</th>
-        </tr>
-        {{#each usages}}
-        <tr>
-          <td>{{this.usage}}</td>
-          <td>{{this.Betrag}}</td>
-        </tr>
-        {{/each}}
-      </thead>
-      <tbody></tbody>
-      <tfoot></tfoot>
-    </table>
+          <tr>
+            <td>{{this.First_Name}}</td>
+            <td>{{this.Last_Name}}</td>
+            <td>{{this.ZahlenderBetrag}}</td>
+            <td>{{this.Gesamtbetrag}}</td>
+            <td>{{this.OffenerBetrag}}</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+      {{/each}}
 
-    <h1>Bei Fragen richten sie sich gerne an unser Team:</h1>
-    <img
-      src="https://spielstil.net/wp-content/uploads/2020/06/IMG_4557.png"
-      class="img-fluid"
-      alt="Responsive image"
-    />
+      <br />
+      <br />
+      <table class="table-print">
+        <thead class="thead-dark">
+          <tr>
+            <th>Usage</th>
+            <th>Betrag</th>
+          </tr>
+          {{#each usages}}
+          <tr>
+            <td>{{this.usage}}</td>
+            <td>{{this.Betrag}}</td>
+          </tr>
+          {{/each}}
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+
+      <p class="mb-5">
+        Falls Ihre Nebenkostenabrechnung eine negative Differenz aufweist,
+        überweisen Sie bitte den dargestellten Betrag innerhalb von 14 Tagen auf
+        das untenstehende Konto
+      </p>
+      <p class="mt-5">
+        Mit freundlichen Grüßen <br /><br />
+        Ihr DreamHome Team
+      </p>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
