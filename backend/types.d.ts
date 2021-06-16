@@ -56,3 +56,29 @@ interface Property {
   Postal_Code: number;
   Address: string;
 }
+
+interface Utility_Cost {
+  Utility_Cost_ID: number;
+  Booking_Date: Date;
+  Value_Date: Date;
+  Amount: number;
+  Usage: string;
+}
+
+interface Journal {
+  Journal_ID: number;
+  Booking_Date: Date;
+  Value_Date: Date;
+  Amount: number;
+  Tenant_ID: number;
+}
+
+interface Position {
+  Position_ID: number;
+  Booking_Date: Date;
+  Value_Date: Date;
+  Booking_Text: string;
+  Usage: string;
+  Beneficiary: string;
+  Amount: string;
+}
