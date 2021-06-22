@@ -76,13 +76,15 @@
       <table class="table-print">
         <thead class="thead-dark">
           <tr>
-            <th>Usage</th>
+            <th>Position</th>
             <th>Betrag</th>
+            <th>Abrechnungsart</th>
           </tr>
           {{#each usages}}
           <tr>
             <td>{{this.usage}}</td>
             <td>{{this.Betrag}}</td>
+            <td>{{this.Abrechnungsart}}</td>
           </tr>
           {{/each}}
         </thead>

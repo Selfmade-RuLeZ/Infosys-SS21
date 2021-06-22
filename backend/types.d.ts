@@ -97,6 +97,7 @@ interface PDFUser {
 interface PDFUsage {
   Betrag: number;
   usage: string;
+  Abrechnungsart: string;
 }
 
 interface OpenRental {

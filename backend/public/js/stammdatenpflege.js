@@ -80,20 +80,8 @@ $(document).ready(function () {
       url: "/api/tenants",
       type: "POST",
       contentType: "application/json",
-      dataType: "json",
       data: JSON.stringify(sendData),
       success: function (result) {
-        selectedRow = table.row.add({
-          id: result.id,
-          name: result.name,
-          lastName: result.lastName,
-          iban: result.iban,
-          personen: result.personen,
-        });
-        selectedRow.draw();
-
-        $("#SDPID").val(result.id);
-
         alert("Der Datensatz wurde angelegt!");
         location.reload();
       },
