@@ -36,7 +36,9 @@ export default {
       .then(async () => {
         const request = new sql.Request(pool);
         await request.query(
-          `insert into Position( Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount) values ( '${booking.Buchungstag}', '${booking.Valutadatum}', '${booking.Buchungstext}','${booking.Verwendungszweck}', '${booking.Auftraggeber}', ${booking.Betrag});`
+          `IF NOT EXISTS(SELECT 1 FROM Position WHERE Booking_Date='${booking.Buchungstag}' AND Booking_Text='${booking.Buchungstext}' AND Usage='${booking.Verwendungszweck}' AND Beneficiary='${booking.Auftraggeber}' AND Amount=${booking.Betrag})
+          insert into Position( Booking_Date, Value_Date, Booking_Text, Usage, Beneficiary, Amount) 
+          values ( '${booking.Buchungstag}', '${booking.Valutadatum}', '${booking.Buchungstext}','${booking.Verwendungszweck}', '${booking.Auftraggeber}', ${booking.Betrag});`
         );
       })
       .catch((error) => {
