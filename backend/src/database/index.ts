@@ -305,4 +305,26 @@ export default {
       });
     return tenants;
   },
+  updateTenant: async (tenant: JSONTenant) => {
+    "UPDATE Tenant SET First_Name = 'Peter', Last_Name = 'Koslowskipo', IBAN = 'DE12312312312312312317', Persons = 2 WHERE Tenant_ID = 5";
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query(
+          `UPDATE Tenant 
+          SET First_Name = '${tenant.name}', Last_Name = '${tenant.lastName}', IBAN = '${tenant.iban}', Persons = ${tenant.personen} 
+          WHERE Tenant_ID = ${tenant.tenantID}`
+        );
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getTenants: ${error}`
+        );
+        throw error;
+      });
+    return tenants;
+  },
 };

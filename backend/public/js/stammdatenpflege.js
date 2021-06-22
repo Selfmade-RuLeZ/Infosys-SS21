@@ -59,9 +59,11 @@ $(document).ready(function () {
     $.ajax({
       url: `/api/tenants/${id}`,
       type: "PUT",
-      data: sendData,
+      contentType: "application/json",
+      data: JSON.stringify(sendData),
       success: function (result) {
         alert("Der Datensatz wurde aktualisiert!");
+        location.reload();
       },
     });
   }

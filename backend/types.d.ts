@@ -20,6 +20,7 @@ interface JSONTenant {
   lastName: string;
   iban: string;
   personen: number;
+  tenantID?: number;
 }
 
 interface Contract {

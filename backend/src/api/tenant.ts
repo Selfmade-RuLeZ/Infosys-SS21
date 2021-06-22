@@ -45,4 +45,17 @@ router.delete("/:id", async (req, res) => {
     });
 });
 
+router.put("/:id", async (req, res) => {
+  console.log(req.body);
+  req.body.tenantID = parseInt(req.params.id);
+  await database
+    .updateTenant(req.body)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
 export default router;
