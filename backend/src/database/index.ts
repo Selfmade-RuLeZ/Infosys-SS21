@@ -286,4 +286,23 @@ export default {
       });
     return positions;
   },
+  deleteTenant: async (tenantID: number) => {
+    const pool = new sql.ConnectionPool(sqlConfig);
+    const tenants = await pool
+      .connect()
+      .then(async () => {
+        const request = new sql.Request(pool);
+        const result = await request.query(
+          `delete from Tenant where Tenant_ID = ${tenantID}`
+        );
+        return result.recordset;
+      })
+      .catch((error) => {
+        console.error(
+          `There is an error occured in Function getTenants: ${error}`
+        );
+        throw error;
+      });
+    return tenants;
+  },
 };

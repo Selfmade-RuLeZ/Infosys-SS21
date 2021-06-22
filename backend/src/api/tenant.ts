@@ -34,4 +34,15 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.delete("/:id", async (req, res) => {
+  await database
+    .deleteTenant(parseInt(req.params.id))
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
 export default router;

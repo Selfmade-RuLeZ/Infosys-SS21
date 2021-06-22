@@ -57,7 +57,7 @@ $(document).ready(function () {
       personen: personen,
     };
     $.ajax({
-      url: `/API.PFAD/${id}`,
+      url: `/api/tenants/${id}`,
       type: "PUT",
       data: sendData,
       success: function (result) {
@@ -93,6 +93,7 @@ $(document).ready(function () {
         $("#SDPID").val(result.id);
 
         alert("Der Datensatz wurde angelegt!");
+        location.reload();
       },
     });
   }
@@ -114,7 +115,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: `/api/tenants`,
+      url: `/api/tenants/${$("#SDPID").val()}`,
       type: "DELETE",
       success: function () {
         $("#SDPID").val("");
@@ -124,6 +125,7 @@ $(document).ready(function () {
         $("#SDPPersons").val("");
 
         alert("Der Datensatz wurde gelöscht!");
+        location.reload();
       },
     });
   });
